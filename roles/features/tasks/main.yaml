@@ -1,25 +1,25 @@
 ---
 - name: enable ospf
-  nxos_feature:
+  cisco.nxos.nxos_feature:
     feature: ospf
     state: enabled
 
 - name: enable bgp
-  nxos_feature:
+  cisco.nxos.nxos_feature:
     feature: bgp
     state: enabled
 
 - name: enable vn-segment-vlan-based
-  nxos_feature:
+  cisco.nxos.nxos_feature:
     feature: vn-segment-vlan-based
     state: enabled
 
 - name: enable nv overlay
-  nxos_feature:
+  cisco.nxos.nxos_feature:
     feature: nv overlay
     state: enabled
 
 - name: enable pim
-  nxos_feature:
+  cisco.nxos.nxos_feature:
     feature: pim
     state: enabled
