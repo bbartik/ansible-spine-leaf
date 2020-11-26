@@ -1,10 +1,14 @@
-!!! READ !!!
+# ANSIBLE SPINE LEAF
+
+This project uses ansible roles such as "bgp-leaf" and "bgp-spine" to build out a spine-leaf network. The logic in the roles is such that all spines peer to leafs and all leafs peer to spines. 
+
+## NOTES
 
 - Nexus must have "nv overlay evpn" configured before allowing evpn af configuration, this does not appear to be in nxos module
 - Prep the devices as follows:
 
 spine1:
-
+```
 conf t
 hostname spine1
 int mgmt 0
@@ -13,9 +17,10 @@ vrf context management
   ip route 0.0.0.0/0 172.28.87.1
 end
 copy running-config startup-config
+```
 
 spine2:
-
+```
 conf t
 hostname spine2
 int mgmt 0
@@ -24,9 +29,10 @@ vrf context management
   ip route 0.0.0.0/0 172.28.87.1
 end
 copy running-config startup-config
+```
 
 leaf1:
-
+```
 conf t
 hostname leaf1
 int mgmt 0
@@ -37,7 +43,7 @@ end
 copy running-config startup-config
 
 leaf2:
-
+```
 conf t
 hostname leaf2
 int mgmt 0
@@ -46,3 +52,4 @@ vrf context management
   ip route 0.0.0.0/0 172.28.87.1
 end
 copy running-config startup-config
+```
