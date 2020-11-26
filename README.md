@@ -5,7 +5,7 @@ This project uses custom ansible roles such as "bgp-leaf" and "bgp-spine" to bui
 
 ## PREP
 
-*NOTE: Nexus must have "nv overlay evpn" configured before allowing EVPN AP configuration, this does not appear to be in nxos module so perform this step manually*
+*NOTE: Nexus must have "nv overlay evpn" configured before allowing EVPN AF configuration, this does not appear to be in nxos module so perform this step manually*
 
 - Prep each device as follows:
 
