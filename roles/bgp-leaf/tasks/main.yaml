@@ -1,0 +1,36 @@
+---
+- name: Configure BGP ASN on Leafs
+  nxos_bgp:
+    asn: "65000"
+    vrf: default
+    router_id: "{{ routerid }}"
+    state: present
+
+- name: Configure BGP EVPN AF on Leafs
+  nxos_bgp_af:
+    asn: "65000"
+    vrf: default
+    afi: l2vpn
+    safi: evpn
+    state: present
+
+- name: Configure Spines as BGP Neighbors on Leafs
+  nxos_bgp_neighbor:
+    asn: "65000"
+    neighbor: "{{ item.value.routerid }}"
+    remote_as: "65000"
+    update_source: Loopback0
+    state: present
+  loop: "{{ hostvars|dict2items }}"
+  when: item.key in item.value.groups.spines
+
+- name: Configure BGP Neighbors with EVPN AF
+  nxos_bgp_neighbor_af:
+    asn: "65000"
+    neighbor: "{{ item.value.routerid }}"
+    afi: l2vpn
+    safi: evpn
+    send_community: both
+    state: present
+  loop: "{{ hostvars|dict2items }}"
+  when: item.key in item.value.groups.spines

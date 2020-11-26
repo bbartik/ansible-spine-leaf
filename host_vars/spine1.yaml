@@ -1,0 +1,18 @@
+interfaces:
+  - name: loopback0
+    loopback: true
+    ip: 10.0.0.1/32
+    desc: router_loopback
+  - name: loopback11
+    loopback: true
+    ip: 10.0.1.1/32
+    desc: mcast_rp_loopback
+  - name: ethernet1/3
+    mode: layer3
+    ip: 10.1.3.1/24
+    desc: downlink_to_leaf1
+  - name: ethernet1/4
+    mode: layer3
+    ip: 10.1.4.1/24
+    desc: downlink_to_leaf2
+  

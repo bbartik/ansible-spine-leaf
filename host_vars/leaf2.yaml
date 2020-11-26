@@ -1,0 +1,18 @@
+interfaces:
+  - name: loopback0
+    loopback: true
+    ip: 10.0.0.4/32
+    desc: router_loopback
+  - name: loopback1
+    loopback: true
+    ip: 10.0.1.4/32
+    ip_2: 10.0.2.3/32
+    desc: vtep_loopback
+  - name: ethernet1/1
+    mode: layer3
+    ip: 10.1.4.4/24
+    desc: uplink_to_spine2
+  - name: ethernet1/2
+    mode: layer3
+    ip: 10.2.4.4/24
+    desc: uplink_to_spine2

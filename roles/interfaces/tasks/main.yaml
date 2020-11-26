@@ -1,0 +1,40 @@
+---
+- name: configure ethernet interfaces
+  nxos_interfaces:
+    config:
+      - name: "{{ item.name }}"
+        description: "{{ item.desc }}"
+        mode: "{{ item.mode}}"
+        enabled: yes
+    state: replaced
+  loop: "{{ interfaces }}"
+  when: '"thernet" in item.name'
+
+- name: configure loopback interfaces
+  nxos_interfaces:
+    config:
+      - name: "{{ item.name }}"
+        description: "{{ item.desc }}"
+    state: replaced
+  loop: "{{ interfaces }}"
+  when: '"oopback" in item.name'
+
+- name: configure l3 interfaces
+  nxos_l3_interfaces:
+    config:
+      - name: "{{ item.name }}"
+        ipv4: 
+          - address: "{{ item.ip }}"
+    state: replaced
+  loop: "{{ interfaces }}"
+
+- name: configure l3 interfaces (secondary ip)
+  nxos_l3_interfaces:
+    config:
+      - name: "{{ item.name }}"
+        ipv4: 
+          - address: "{{ item.ip_2 }}"
+            secondary: True
+    state: merged
+  loop: "{{ interfaces }}"
+  when: 'item.ip_2 is defined'

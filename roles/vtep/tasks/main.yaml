@@ -1,0 +1,9 @@
+---
+- name: Configure VTEP interfaces
+  nxos_vxlan_vtep:
+    interface: nve1
+    description: "VTEP Interface"
+    host_reachability: yes
+    source_interface: Loopback0
+    shutdown: no
+    state: present

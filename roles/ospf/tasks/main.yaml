@@ -1,0 +1,15 @@
+---
+- name: configure ospf default vrf
+  nxos_ospf_vrf:
+    ospf: 1
+    router_id: "{{ routerid }}"
+    vrf: default
+    state: present
+
+- name: configure ospf interfaces
+  nxos_interface_ospf:
+    interface: "{{ item.name }}"
+    ospf: 1
+    area: 0.0.0.0
+    network: point-to-point
+  loop: "{{ interfaces }}"

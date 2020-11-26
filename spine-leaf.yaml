@@ -1,0 +1,25 @@
+---
+- name: Configure Leafs
+  hosts: leafs
+  gather_facts: no
+  connection: network_cli
+  roles:
+  - features
+  - interfaces
+  - ospf
+  - multicast
+  - vtep
+  - bgp-leaf
+
+- name: Configure Spines
+  hosts: spines
+  gather_facts: no
+  connection: network_cli
+  roles:
+  - features
+  - interfaces
+  - ospf
+  - multicast
+  - vtep
+  - bgp-spine
+  

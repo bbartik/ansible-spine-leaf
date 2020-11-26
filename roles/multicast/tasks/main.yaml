@@ -1,0 +1,10 @@
+- name: Configure PIM on Interfaces
+  nxos_pim_interface:
+    interface: "{{ item.name }}"
+    state: present
+    sparse: yes
+  loop: "{{ interfaces }}"
+
+- nxos_pim_rp_address:
+    rp_address: "10.0.0.1"
+    state: present
